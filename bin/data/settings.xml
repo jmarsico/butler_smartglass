@@ -1,0 +1,14 @@
+<panel>
+	<show_threshold>0</show_threshold>
+	<show_contours>0</show_contours>
+	<bgThresh>14</bgThresh>
+	<minArea>10</minArea>
+	<maxArea>100</maxArea>
+	<blur>10</blur>
+	<erode>2</erode>
+	<dilate>0</dilate>
+	<learnTime>50</learnTime>
+	<Ready_for_Cells>0</Ready_for_Cells>
+	<glass_threshold>0</glass_threshold>
+<panel/>
+</panel>

@@ -50,12 +50,12 @@ void testApp::setup() {
         grabber->setCameraName("cam1");
         //grabber->setURI("http://192.168.0.10/videostream.cgi?user=admin&pwd=");
         //grabber->setURI("http://82.79.176.85:8081/axis-cgi/mjpg/video.cgi?resolution=320x240");
-        grabber->setURI("http://148.61.142.228/axis-cgi/mjpg/video.cgi?resolution=320x240");
-        //grabber->setURI("http://216.8.159.21/axis-cgi/mjpg/video.cgi?resolution=320x240");
-        grabber->setUsername("admin");
-        grabber->setPassword("");
+        grabber->setURI("http://192.168.2.2/videostream.cgi?user=admin&pwd=kelly");
+//        //grabber->setURI("http://216.8.159.21/axis-cgi/mjpg/video.cgi?resolution=320x240");
+//        grabber->setUsername("admin");
+//        grabber->setPassword("kelly");
         grabber->connect();
-    }  
+    } 
     
     ofLog() << "connection made!";
     ofLog() << "width: " << grabber->getWidth();
@@ -97,7 +97,7 @@ void testApp::setup() {
     vector<ofPoint> sgPoints;
     for(int x = 0; x < 3; x++)
     {
-        for(int y = 0; y < 4; y++)
+        for(int y = 0; y < 2; y++)
         {
             ofPoint p;
             p.set(x* panelW, y*panelH);
@@ -128,6 +128,11 @@ void testApp::setup() {
     else ofLog() << "XML did not load, check data/ folder";
 
     sender.setup("127.0.0.1", 12345);
+    
+    /////////////// setup UDP sender for rasperryPi (with internet sharing) /////////////////
+	udpConnection.Create();
+	udpConnection.Connect("192.168.2.5",11999);
+	udpConnection.SetNonBlocking(true);
 }
 
 
@@ -208,6 +213,7 @@ void testApp::update() {
         sg[i].setThreshold(glassThresh);
         sg[i].setOpacity(brightVals[i]);
         sg[i].update();
+    
     }
     
     //reset and re-init cells
@@ -226,6 +232,7 @@ void testApp::update() {
     if(bLoadCells) loadCellsFromXml();
     
     sendOscMessages();
+    sendToPi();
 }
 
 
@@ -342,8 +349,8 @@ void testApp::saveCellsToXml(){
             {
                 pointsXML.addTag("PT");
                 pointsXML.pushTag("PT", j);
-                pointsXML.setValue("X", cells[i].p[j].x);
-                pointsXML.setValue("Y", cells[i].p[j].y);
+                pointsXML.setValue("X", cells[i].p[j].point.x);
+                pointsXML.setValue("Y", cells[i].p[j].point.y);
                 pointsXML.popTag();
             }
             pointsXML.popTag();
@@ -370,6 +377,62 @@ void testApp::sendOscMessages(){
         
     }
 }
+
+void testApp::sendToPi(){
+    
+    //if not in testMode, send the messages to rPi based on state of smartGlass objects
+//    if(!testMode)
+//    {
+        string message = "";
+        for(int i = 0; i < NUMSAMPLES; i++)
+        {
+            message+= ofToString(i) + "|" + ofToString(sg[i].curState) + "[/p]";
+            //ofLog() << "index: " << i << " || value: " << brightVals[i];
+        }
+        udpConnection.Send(message.c_str(),message.length());
+        ofLog() << "Message Length: " << message.length();
+//    }
+    
+//    //if in testMode, control state of each smartglass one by one
+//    if(testMode)
+//    {
+//        string testMess = "";
+//        if(pane0)
+//        {
+//            testMess+= ofToString(0) + "|" + "1" +"[/p]";
+//        } else testMess+= ofToString(0) + "|" + "0" +"[/p]";
+//        
+//        if(pane1)
+//        {
+//            testMess+= ofToString(1) + "|" + "1" +"[/p]";
+//        } else testMess+= ofToString(1) + "|" + "0" +"[/p]";
+//        
+//        if(pane2)
+//        {
+//            testMess+= ofToString(2) + "|" + "1" +"[/p]";
+//        } else testMess+= ofToString(2) + "|" + "0" +"[/p]";
+//        
+//        if(pane3)
+//        {
+//            testMess+= ofToString(3) + "|" + "1" +"[/p]";
+//        } else testMess+= ofToString(3) + "|" + "0" +"[/p]";
+//        
+//        if(pane4)
+//        {
+//            testMess+= ofToString(4) + "|" + "1" +"[/p]";
+//        } else testMess+= ofToString(4) + "|" + "0" +"[/p]";
+//        
+//        if(pane5)
+//        {
+//            testMess+= ofToString(5) + "|" + "1" +"[/p]";
+//        } else testMess+= ofToString(5) + "|" + "0" +"[/p]";
+//        
+//        udpConnection.Send(testMess.c_str(),testMess.length());
+//        ofLog() << "Message Length: " << testMess.length();
+//    }
+    
+}
+
 
 
 

@@ -9,6 +9,7 @@
 #include "ofxXmlSettings.h"
 #include "SmartGlass.h"
 #include "ofxOsc.h"
+#include "ofxNetwork.h"
 
 using ofx::Video::IPVideoGrabber;
 using ofx::Video::SharedIPVideoGrabber;
@@ -16,7 +17,7 @@ using ofx::Video::SharedIPVideoGrabber;
 
 class testApp : public ofBaseApp {
     
-#define NUMSAMPLES 12
+#define NUMSAMPLES 6
     
 public:
 	void setup();
@@ -27,6 +28,7 @@ public:
 	void mouseReleased(int x, int y, int button);
     
     void sendOscMessages();
+    void sendToPi();
     
     void loadCellsFromXml();
     void saveCellsToXml();
@@ -75,5 +77,7 @@ public:
     //OSC messages
     ofxOscSender sender;
     vector <int> prevVals;
+    
+    ofxUDPManager udpConnection;
     
 };

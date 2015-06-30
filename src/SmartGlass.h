@@ -15,6 +15,7 @@ public:
     void update();
     void display();
     void setRampTimeMillis(int _millis);
+    void setStateChangeWait(int _millis);
     void setOpacity(int _opacityVal);
     
     void setThreshold(int _thresh);
@@ -24,9 +25,9 @@ public:
     int thresh;
     int h, w, x, y;
     ofRectangle rect;
-    int rampCounter, startTime;
-    int rampTimeMillis;
-    bool curState, isRamping, prevState;
+    int rampCounter, startTime, stateChangeTime;
+    int rampTimeMillis, stateChangeTimeAmount;
+    bool curState, isRamping, prevState, bStateChangeAllowed;
     
     
 };

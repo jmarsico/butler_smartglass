@@ -9,6 +9,6 @@
 	<dilate>0</dilate>
 	<learnTime>30</learnTime>
 	<Ready_for_Cells>1</Ready_for_Cells>
-	<glass_threshold>0</glass_threshold>
+	<glass_threshold>73</glass_threshold>
 <panel/>
 </panel>

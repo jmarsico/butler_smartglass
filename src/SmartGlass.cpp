@@ -18,8 +18,11 @@ void SmartGlass::init(int _h, int _w, int _x, int _y){
     y = _y;
     curState = false;
     rampTimeMillis = 100;
+    stateChangeTimeAmount = 300;
     thresh = 0;
-    
+    bStateChangeAllowed = true;
+    stateChangeTime = 0;
+
     rect.set(x, y, w, h);
 }
 
@@ -36,10 +39,10 @@ void SmartGlass::setOpacity(int _opacityVal){
     prevState = curState;
      
     //if the opacity is over 0, turn glass on (true);
-    if(_opacityVal > thresh)
+    if(_opacityVal > thresh && bStateChangeAllowed)
     {
         curState = true;
-    } else if(_opacityVal <= thresh)
+    } else if(_opacityVal <= thresh && bStateChangeAllowed)
     {
         curState = false;
     }
@@ -57,14 +60,32 @@ void SmartGlass::setThreshold(int _thresh)
     thresh = _thresh;
 }
 
+//------------------ SET WAIT TIM -------------------------
+void SmartGlass::setStateChangeWait(int _millis){
+    stateChangeTimeAmount = _millis;
+}
+
+
 //------------------ UPDATE -------------------------
 void SmartGlass::update(){
     
-    
+  
     //if the glass was OFF before, AND current state is ON turn on ramping
     if(prevState == false && curState == true)
     {
         isRamping = true;
+    }
+    
+    //if there is a change in state
+    if(prevState != curState)
+    {
+        stateChangeTime = ofGetElapsedTimeMillis();
+        bStateChangeAllowed = false;
+    }
+    
+    if(ofGetElapsedTimeMillis() - stateChangeTime > stateChangeTimeAmount)
+    {
+        bStateChangeAllowed = true;
     }
     
     

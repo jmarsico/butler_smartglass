@@ -71,6 +71,7 @@ public:
     ofxButton bSaveCells;
     ofxToggle bReady;
     ofxIntSlider glassThresh;
+    ofxIntSlider stateChangeWait;
     ofxPanel gui;
     
     

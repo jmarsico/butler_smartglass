@@ -71,13 +71,14 @@ void testApp::setup() {
     gui.add(blurAmount.setup("blur", 10, 1, 100));
     gui.add(erodeAmount.setup("erode", 0, 0, 10));
     gui.add(dilateAmount.setup("dilate", 0, 0, 10));
-    gui.add(learningTime.setup("learnTime", 50, 30, 2000));
+    gui.add(learningTime.setup("learnTime", 50, 2, 1000));
     gui.add(resetbkgnd.setup("reset background"));
     gui.add(bReady.setup("Ready for Cells", false));
     gui.add(resetCells.setup("reset cells"));
     gui.add(bLoadCells.setup("load cells"));
     gui.add(bSaveCells.setup("save cells"));
     gui.add(glassThresh.setup("glass threshold", 0, 0, 255));
+    gui.add(stateChangeWait.setup("glass state limiter", 300, 10, 1000));
     gui.setPosition(10, ofGetHeight() - gui.getHeight());
     gui.loadFromFile("settings.xml");
     
@@ -210,6 +211,7 @@ void testApp::update() {
             cells[i].update(threshPix);
             brightVals[i] = cells[i].getAverageBrightness(1);
         }
+        sg[i].setStateChangeWait(stateChangeWait);
         sg[i].setThreshold(glassThresh);
         sg[i].setOpacity(brightVals[i]);
         sg[i].update();

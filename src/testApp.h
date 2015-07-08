@@ -10,6 +10,9 @@
 #include "SmartGlass.h"
 #include "ofxOsc.h"
 #include "ofxNetwork.h"
+#include "ofxGenericDmx.h"
+
+
 
 using ofx::Video::IPVideoGrabber;
 using ofx::Video::SharedIPVideoGrabber;
@@ -18,6 +21,7 @@ using ofx::Video::SharedIPVideoGrabber;
 class testApp : public ofBaseApp {
     
 #define NUMSAMPLES 6
+#define DMX_DATA_LENGTH 512
     
 public:
 	void setup();
@@ -28,10 +32,14 @@ public:
 	void mouseReleased(int x, int y, int button);
     
     void sendOscMessages();
-    void sendToPi();
+    void sendDMX();
+    
+    void setDMXtoZero();
     
     void loadCellsFromXml();
     void saveCellsToXml();
+    
+    void exit();
     
     //imageSampler
     ofxImageSampler cells[NUMSAMPLES];
@@ -72,6 +80,7 @@ public:
     ofxToggle bReady;
     ofxIntSlider glassThresh;
     ofxIntSlider stateChangeWait;
+    ofxToggle sendtoGlass;
     ofxPanel gui;
     
     
@@ -80,5 +89,12 @@ public:
     vector <int> prevVals;
     
     ofxUDPManager udpConnection;
+    
+    //DMX interface
+    //pointer to our Enntec DMX USB Pro object
+    DmxDevice* dmxInterface_;
+    
+    //our DMX packet (which holds the channel values + 1st byte for the start code)
+    unsigned char dmxData_[DMX_DATA_LENGTH];
     
 };

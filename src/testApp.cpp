@@ -48,13 +48,13 @@ void testApp::setup() {
     {
         ofLog() << "connecting...";
         grabber->setCameraName("cam1");
-        //grabber->setURI("http://192.168.0.10/videostream.cgi?user=admin&pwd=");
-        //grabber->setURI("http://82.79.176.85:8081/axis-cgi/mjpg/video.cgi?resolution=320x240");
-        grabber->setURI("http://192.168.2.2/videostream.cgi?user=admin&pwd=kelly");
-//        //grabber->setURI("http://216.8.159.21/axis-cgi/mjpg/video.cgi?resolution=320x240");
-//        grabber->setUsername("admin");
-//        grabber->setPassword("kelly");
-        grabber->connect();
+        grabber->setURI("http://192.168.0.10/videostream.cgi?user=admin&pwd=");
+//        grabber->setURI("http://82.79.176.85:8081/axis-cgi/mjpg/video.cgi?resolution=320x240");
+//        grabber->setURI("http://192.168.2.2/videostream.cgi?user=admin&pwd=kelly");
+        grabber->setURI("http://216.8.159.21/axis-cgi/mjpg/video.cgi?resolution=320x240");
+        grabber->setUsername("admin");
+        grabber->setPassword("kelly");
+        grabber->connect(); 
     } 
     
     ofLog() << "connection made!";
@@ -79,6 +79,7 @@ void testApp::setup() {
     gui.add(bSaveCells.setup("save cells"));
     gui.add(glassThresh.setup("glass threshold", 0, 0, 255));
     gui.add(stateChangeWait.setup("glass state limiter", 300, 10, 1000));
+    gui.add(sendtoGlass.setup("send DMX", false));
     gui.setPosition(10, ofGetHeight() - gui.getHeight());
     gui.loadFromFile("settings.xml");
     
@@ -128,12 +129,22 @@ void testApp::setup() {
     if(pointsXML.load("cellPoints.xml")) ofLog() << "XML loaded successfully";
     else ofLog() << "XML did not load, check data/ folder";
 
+    //OSC setup
     sender.setup("127.0.0.1", 12345);
+
     
-    /////////////// setup UDP sender for rasperryPi (with internet sharing) /////////////////
-	udpConnection.Create();
-	udpConnection.Connect("192.168.2.5",11999);
-	udpConnection.SetNonBlocking(true);
+    
+    
+    //DMX Setup
+    //zero our DMX value array
+    memset( dmxData_, 0, DMX_DATA_LENGTH );
+    //open the device
+    dmxInterface_ = ofxGenericDmx::openFirstDevice();
+    if ( dmxInterface_ == 0 ) printf( "No Enttec Device Found\n" );
+    else printf( "isOpen: %i\n", dmxInterface_->isOpen() );
+    printf("ofxGenericDmx addon version: %s.%s\n", ofxGenericDmx::VERSION_MAJOR, ofxGenericDmx::VERSION_MINOR);
+    
+    
 }
 
 
@@ -233,8 +244,8 @@ void testApp::update() {
     if(bSaveCells) saveCellsToXml();
     if(bLoadCells) loadCellsFromXml();
     
-    sendOscMessages();
-    sendToPi();
+    sendOscMessages();    
+    sendtoGlass ? sendDMX() : setDMXtoZero();
 }
 
 
@@ -380,59 +391,48 @@ void testApp::sendOscMessages(){
     }
 }
 
-void testApp::sendToPi(){
+//--------------------------------------------------------------
+void testApp::sendDMX(){
     
-    //if not in testMode, send the messages to rPi based on state of smartGlass objects
-//    if(!testMode)
-//    {
-        string message = "";
-        for(int i = 0; i < NUMSAMPLES; i++)
+    //force first byte to zero (it is not a channel but DMX type info - start code)
+    dmxData_[0] = 0;
+
+    for(int i = 0; i < sg.size(); i++)
+    {
+        if(sg[i].curState == true)
         {
-            message+= ofToString(i) + "|" + ofToString(sg[i].curState) + "[/p]";
-            //ofLog() << "index: " << i << " || value: " << brightVals[i];
+            dmxData_[i+1] = 255;
+        } else {
+            dmxData_[i+1] = 0;
         }
-        udpConnection.Send(message.c_str(),message.length());
-        ofLog() << "Message Length: " << message.length();
-//    }
-    
-//    //if in testMode, control state of each smartglass one by one
-//    if(testMode)
-//    {
-//        string testMess = "";
-//        if(pane0)
-//        {
-//            testMess+= ofToString(0) + "|" + "1" +"[/p]";
-//        } else testMess+= ofToString(0) + "|" + "0" +"[/p]";
-//        
-//        if(pane1)
-//        {
-//            testMess+= ofToString(1) + "|" + "1" +"[/p]";
-//        } else testMess+= ofToString(1) + "|" + "0" +"[/p]";
-//        
-//        if(pane2)
-//        {
-//            testMess+= ofToString(2) + "|" + "1" +"[/p]";
-//        } else testMess+= ofToString(2) + "|" + "0" +"[/p]";
-//        
-//        if(pane3)
-//        {
-//            testMess+= ofToString(3) + "|" + "1" +"[/p]";
-//        } else testMess+= ofToString(3) + "|" + "0" +"[/p]";
-//        
-//        if(pane4)
-//        {
-//            testMess+= ofToString(4) + "|" + "1" +"[/p]";
-//        } else testMess+= ofToString(4) + "|" + "0" +"[/p]";
-//        
-//        if(pane5)
-//        {
-//            testMess+= ofToString(5) + "|" + "1" +"[/p]";
-//        } else testMess+= ofToString(5) + "|" + "0" +"[/p]";
-//        
-//        udpConnection.Send(testMess.c_str(),testMess.length());
-//        ofLog() << "Message Length: " << testMess.length();
-//    }
-    
+    }
+           
+           
+    if ( !dmxInterface_ || !dmxInterface_->isOpen() )
+    {
+       printf( "Not updating, enttec device is not open.\n");
+    } else {
+       //send the data to the dmx interface
+       dmxInterface_->writeDmx( dmxData_, DMX_DATA_LENGTH );
+    }
+}
+
+//--------------------------------------------------------------
+void testApp::setDMXtoZero(){
+    //zero our DMX value array
+    memset( dmxData_, 0, DMX_DATA_LENGTH );
+    if ( ! dmxInterface_ || ! dmxInterface_->isOpen() ) {
+        printf( "Not updating, enttec device is not open.\n");
+    }
+    else{
+        //send the data to the dmx interface
+        dmxInterface_->writeDmx( dmxData_, DMX_DATA_LENGTH );
+    }
+}
+
+
+void testApp::exit(){
+    setDMXtoZero();
 }
 
 

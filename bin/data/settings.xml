@@ -1,14 +1,16 @@
 <panel>
 	<show_threshold>1</show_threshold>
 	<show_contours>0</show_contours>
-	<bgThresh>48</bgThresh>
+	<bgThresh>5</bgThresh>
 	<minArea>10</minArea>
 	<maxArea>100</maxArea>
 	<blur>10</blur>
 	<erode>2</erode>
 	<dilate>0</dilate>
-	<learnTime>30</learnTime>
+	<learnTime>2</learnTime>
 	<Ready_for_Cells>1</Ready_for_Cells>
-	<glass_threshold>73</glass_threshold>
+	<glass_threshold>2</glass_threshold>
 <panel/>
+<glass_state_limiter>39</glass_state_limiter>
+	<send_DMX>1</send_DMX>
 </panel>

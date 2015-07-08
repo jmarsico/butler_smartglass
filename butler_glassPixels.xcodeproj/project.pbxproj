@@ -48,6 +48,13 @@
 		BA1D01C51A6DFF6C0077F777 /* OscPrintReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA1D01B61A6DFF6C0077F777 /* OscPrintReceivedElements.cpp */; };
 		BA1D01C61A6DFF6C0077F777 /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA1D01B81A6DFF6C0077F777 /* OscReceivedElements.cpp */; };
 		BA1D01C71A6DFF6C0077F777 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA1D01BA1A6DFF6C0077F777 /* OscTypes.cpp */; };
+		BA2BEDE01B4D858500167361 /* DmxDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA2BEDC51B4D858500167361 /* DmxDevice.cpp */; };
+		BA2BEDE11B4D858500167361 /* DmxRawDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA2BEDC71B4D858500167361 /* DmxRawDevice.cpp */; };
+		BA2BEDE21B4D858500167361 /* DmxUsbProDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA2BEDC91B4D858500167361 /* DmxUsbProDevice.cpp */; };
+		BA2BEDE31B4D858500167361 /* FtdiDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA2BEDCB1B4D858500167361 /* FtdiDevice.cpp */; };
+		BA2BEDE41B4D858500167361 /* ofxGenericDmx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA2BEDCD1B4D858500167361 /* ofxGenericDmx.cpp */; };
+		BA2BEDE51B4D858500167361 /* libftdi1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA2BEDD71B4D858500167361 /* libftdi1.a */; };
+		BA2BEDE61B4D858500167361 /* libusb-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA2BEDDF1B4D858500167361 /* libusb-1.0.a */; };
 		BAF563F51A487B5A00448288 /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAF563F31A487B5A00448288 /* testApp.cpp */; };
 		BAF563F91A48821400448288 /* SmartGlass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAF563F71A48821400448288 /* SmartGlass.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
@@ -260,6 +267,20 @@
 		BA1D01B91A6DFF6C0077F777 /* OscReceivedElements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscReceivedElements.h; sourceTree = "<group>"; };
 		BA1D01BA1A6DFF6C0077F777 /* OscTypes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OscTypes.cpp; sourceTree = "<group>"; };
 		BA1D01BB1A6DFF6C0077F777 /* OscTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscTypes.h; sourceTree = "<group>"; };
+		BA2BEDC51B4D858500167361 /* DmxDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DmxDevice.cpp; sourceTree = "<group>"; };
+		BA2BEDC61B4D858500167361 /* DmxDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DmxDevice.h; sourceTree = "<group>"; };
+		BA2BEDC71B4D858500167361 /* DmxRawDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DmxRawDevice.cpp; sourceTree = "<group>"; };
+		BA2BEDC81B4D858500167361 /* DmxRawDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DmxRawDevice.h; sourceTree = "<group>"; };
+		BA2BEDC91B4D858500167361 /* DmxUsbProDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DmxUsbProDevice.cpp; sourceTree = "<group>"; };
+		BA2BEDCA1B4D858500167361 /* DmxUsbProDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DmxUsbProDevice.h; sourceTree = "<group>"; };
+		BA2BEDCB1B4D858500167361 /* FtdiDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FtdiDevice.cpp; sourceTree = "<group>"; };
+		BA2BEDCC1B4D858500167361 /* FtdiDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FtdiDevice.h; sourceTree = "<group>"; };
+		BA2BEDCD1B4D858500167361 /* ofxGenericDmx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxGenericDmx.cpp; sourceTree = "<group>"; };
+		BA2BEDCE1B4D858500167361 /* ofxGenericDmx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxGenericDmx.h; sourceTree = "<group>"; };
+		BA2BEDD21B4D858500167361 /* ftdi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ftdi.h; sourceTree = "<group>"; };
+		BA2BEDD71B4D858500167361 /* libftdi1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libftdi1.a; sourceTree = "<group>"; };
+		BA2BEDDA1B4D858500167361 /* libusb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libusb.h; sourceTree = "<group>"; };
+		BA2BEDDF1B4D858500167361 /* libusb-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libusb-1.0.a"; sourceTree = "<group>"; };
 		BAF563F31A487B5A00448288 /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
 		BAF563F41A487B5A00448288 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
 		BAF563F71A48821400448288 /* SmartGlass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmartGlass.cpp; sourceTree = "<group>"; };
@@ -339,7 +360,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA2BEDE51B4D858500167361 /* libftdi1.a in Frameworks */,
 				E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */,
+				BA2BEDE61B4D858500167361 /* libusb-1.0.a in Frameworks */,
 				E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */,
 				E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */,
 				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
@@ -856,6 +879,109 @@
 			path = osc;
 			sourceTree = "<group>";
 		};
+		BA2BEDC31B4D858500167361 /* ofxGenericDmx */ = {
+			isa = PBXGroup;
+			children = (
+				BA2BEDC41B4D858500167361 /* src */,
+				BA2BEDCF1B4D858500167361 /* libs */,
+			);
+			name = ofxGenericDmx;
+			sourceTree = "<group>";
+		};
+		BA2BEDC41B4D858500167361 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				BA2BEDC51B4D858500167361 /* DmxDevice.cpp */,
+				BA2BEDC61B4D858500167361 /* DmxDevice.h */,
+				BA2BEDC71B4D858500167361 /* DmxRawDevice.cpp */,
+				BA2BEDC81B4D858500167361 /* DmxRawDevice.h */,
+				BA2BEDC91B4D858500167361 /* DmxUsbProDevice.cpp */,
+				BA2BEDCA1B4D858500167361 /* DmxUsbProDevice.h */,
+				BA2BEDCB1B4D858500167361 /* FtdiDevice.cpp */,
+				BA2BEDCC1B4D858500167361 /* FtdiDevice.h */,
+				BA2BEDCD1B4D858500167361 /* ofxGenericDmx.cpp */,
+				BA2BEDCE1B4D858500167361 /* ofxGenericDmx.h */,
+			);
+			name = src;
+			path = ../../../addons/ofxGenericDmx/src;
+			sourceTree = "<group>";
+		};
+		BA2BEDCF1B4D858500167361 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				BA2BEDD01B4D858500167361 /* libftdi1 */,
+				BA2BEDD81B4D858500167361 /* libusbx */,
+			);
+			name = libs;
+			path = ../../../addons/ofxGenericDmx/libs;
+			sourceTree = "<group>";
+		};
+		BA2BEDD01B4D858500167361 /* libftdi1 */ = {
+			isa = PBXGroup;
+			children = (
+				BA2BEDD11B4D858500167361 /* include */,
+				BA2BEDD31B4D858500167361 /* lib */,
+			);
+			path = libftdi1;
+			sourceTree = "<group>";
+		};
+		BA2BEDD11B4D858500167361 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				BA2BEDD21B4D858500167361 /* ftdi.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		BA2BEDD31B4D858500167361 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				BA2BEDD61B4D858500167361 /* osx */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		BA2BEDD61B4D858500167361 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				BA2BEDD71B4D858500167361 /* libftdi1.a */,
+			);
+			path = osx;
+			sourceTree = "<group>";
+		};
+		BA2BEDD81B4D858500167361 /* libusbx */ = {
+			isa = PBXGroup;
+			children = (
+				BA2BEDD91B4D858500167361 /* include */,
+				BA2BEDDB1B4D858500167361 /* lib */,
+			);
+			path = libusbx;
+			sourceTree = "<group>";
+		};
+		BA2BEDD91B4D858500167361 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				BA2BEDDA1B4D858500167361 /* libusb.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		BA2BEDDB1B4D858500167361 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				BA2BEDDE1B4D858500167361 /* osx */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		BA2BEDDE1B4D858500167361 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				BA2BEDDF1B4D858500167361 /* libusb-1.0.a */,
+			);
+			path = osx;
+			sourceTree = "<group>";
+		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
@@ -867,6 +993,7 @@
 				6025FAF6414C2CA589764D26 /* ofxCv */,
 				5E76241D5D7E23E72FE1D31F /* ofxImageSampler */,
 				21EBD5CB6543DF5A6F5B2E37 /* ofxIpVideoGrabber */,
+				BA2BEDC31B4D858500167361 /* ofxGenericDmx */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -1143,6 +1270,7 @@
 				483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */,
 				BA1D01C41A6DFF6C0077F777 /* OscOutboundPacketStream.cpp in Sources */,
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
+				BA2BEDE21B4D858500167361 /* DmxUsbProDevice.cpp in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
@@ -1150,6 +1278,7 @@
 				250A95BA26587BE85DB0A353 /* ofxCvColorImage.cpp in Sources */,
 				1D5F3298C2FA073628012944 /* ofxCvContourFinder.cpp in Sources */,
 				BA1D01C01A6DFF6C0077F777 /* ofxOscSender.cpp in Sources */,
+				BA2BEDE31B4D858500167361 /* FtdiDevice.cpp in Sources */,
 				169D3C72FDE6C5590A1616F5 /* ofxCvFloatImage.cpp in Sources */,
 				BA1D01BD1A6DFF6C0077F777 /* ofxOscMessage.cpp in Sources */,
 				FB09C6B2A1DA0EA217240CB8 /* ofxCvGrayscaleImage.cpp in Sources */,
@@ -1157,10 +1286,12 @@
 				BA1D01BE1A6DFF6C0077F777 /* ofxOscParameterSync.cpp in Sources */,
 				63020F16C7E8DED980111241 /* ofxCvImage.cpp in Sources */,
 				BA1D01C71A6DFF6C0077F777 /* OscTypes.cpp in Sources */,
+				BA2BEDE11B4D858500167361 /* DmxRawDevice.cpp in Sources */,
 				BA1D01BF1A6DFF6C0077F777 /* ofxOscReceiver.cpp in Sources */,
 				D3301F6A0B43BB293ED97C1D /* ofxCvShortImage.cpp in Sources */,
 				63B57AC5BF4EF088491E0317 /* ofxXmlSettings.cpp in Sources */,
 				933A2227713C720CEFF80FD9 /* tinyxml.cpp in Sources */,
+				BA2BEDE41B4D858500167361 /* ofxGenericDmx.cpp in Sources */,
 				9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */,
 				5A4349E9754D6FA14C0F2A3A /* tinyxmlparser.cpp in Sources */,
 				B6840996567E78436F7ECFAB /* ETF.cpp in Sources */,
@@ -1172,6 +1303,7 @@
 				45CC483A999BF1065A6B926C /* Distance.cpp in Sources */,
 				BA1D01C61A6DFF6C0077F777 /* OscReceivedElements.cpp in Sources */,
 				5CC34D433F5806179935B89D /* Flow.cpp in Sources */,
+				BA2BEDE01B4D858500167361 /* DmxDevice.cpp in Sources */,
 				BA0E55591A9A8EEA00FA76F8 /* ofxTCPServer.cpp in Sources */,
 				BA0E55571A9A8EEA00FA76F8 /* ofxTCPClient.cpp in Sources */,
 				BA1D01BC1A6DFF6C0077F777 /* ofxOscBundle.cpp in Sources */,
@@ -1435,9 +1567,11 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_52)",
+					/Users/jakobmarsico/Documents/of_v0.8.4_osx_release/addons/ofxGenericDmx/libs/libftdi1/lib/osx,
+					/Users/jakobmarsico/Documents/of_v0.8.4_osx_release/addons/ofxGenericDmx/libs/libusbx/lib/osx,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
-				USER_HEADER_SEARCH_PATHS = "../../../addons/ofxOsc/libs/oscpack/src/ ../../../addons/ofxOsc/libs/oscpack/src/";
+				USER_HEADER_SEARCH_PATHS = "../../../addons/ofxGenericDmx/libs/libusbx/include/ ../../../addons/ofxOsc/libs/oscpack/src/ ../../../addons/ofxGenericDmx/libs/libftdi1/include/";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1521,9 +1655,11 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_49)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
+					/Users/jakobmarsico/Documents/of_v0.8.4_osx_release/addons/ofxGenericDmx/libs/libftdi1/lib/osx,
+					/Users/jakobmarsico/Documents/of_v0.8.4_osx_release/addons/ofxGenericDmx/libs/libusbx/lib/osx,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "../../../addons/ofxOsc/libs/oscpack/src/ ../../../addons/ofxOsc/libs/oscpack/src/";
+				USER_HEADER_SEARCH_PATHS = "../../../addons/ofxGenericDmx/libs/libusbx/include/ ../../../addons/ofxOsc/libs/oscpack/src/ ../../../addons/ofxGenericDmx/libs/libftdi1/include/";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
